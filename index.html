@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meghana B U | Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050810;
+  --bg2:#080c17;
+  --card:#0c1120;
+  --card2:#0f1528;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(255,255,255,0.12);
+  --a1:#6c8eff;
+  --a2:#3ddcb0;
+  --a3:#f7b731;
+  --a4:#ff6b9d;
+  --a5:#a78bfa;
+  --text:#f2f4fc;
+  --sub:#8890b0;
+  --faint:#1e2540;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Satoshi',sans-serif;overflow-x:hidden}
+
+/* ── NOISE OVERLAY ── */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.4}
+
+/* ── ORBS ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;animation:drift 20s ease-in-out infinite}
+.o1{width:900px;height:900px;background:radial-gradient(circle,rgba(108,142,255,0.14),transparent 70%);top:-300px;left:-300px;animation-duration:25s}
+.o2{width:700px;height:700px;background:radial-gradient(circle,rgba(61,220,176,0.12),transparent 70%);bottom:-200px;right:-200px;animation-duration:30s;animation-delay:-10s}
+.o3{width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,157,0.1),transparent 70%);top:40%;right:5%;animation-duration:20s;animation-delay:-5s}
+@keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,30px)}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(5,8,16,0.7);backdrop-filter:blur(28px) saturate(180%);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:22px;letter-spacing:-0.8px;background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{color:var(--sub);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--a1);transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.nbtn{padding:9px 20px;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;font-family:'Satoshi',sans-serif}
+.nbtn.ghost{background:transparent;color:var(--sub);border:1px solid var(--border2)}
+.nbtn.ghost:hover{color:var(--text);border-color:rgba(255,255,255,0.25)}
+.nbtn.solid{background:linear-gradient(135deg,var(--a1),var(--a5));color:#fff;border:none}
+.nbtn.solid:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:70px;position:relative;z-index:1}
+.hero-inner{max-width:1140px;margin:0 auto;padding:0 60px;display:grid;grid-template-columns:420px 1fr;gap:72px;align-items:center;width:100%}
+
+/* PHOTO COLUMN */
+.photo-col{display:flex;flex-direction:column;gap:16px;align-items:center}
+.photo-ring{position:relative;width:300px;height:300px;flex-shrink:0}
+.photo-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4),var(--a3));animation:spin 6s linear infinite;z-index:0}
+.photo-ring::after{content:'';position:absolute;inset:-8px;border-radius:50%;background:linear-gradient(135deg,var(--a1),var(--a2),var(--a4),var(--a3));opacity:.25;filter:blur(20px);animation:spin 6s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-inner{position:absolute;inset:3px;border-radius:50%;overflow:hidden;background:var(--card);z-index:1}
+.photo-inner img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.avail-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(61,220,176,0.08);border:1px solid rgba(61,220,176,0.2);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--a2)}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--a2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.mini-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.mchip{font-size:11px;padding:5px 12px;border-radius:20px;font-weight:700;letter-spacing:.02em}
+.mc1{background:rgba(108,142,255,0.12);color:var(--a1);border:1px solid rgba(108,142,255,0.2)}
+.mc2{background:rgba(61,220,176,0.12);color:var(--a2);border:1px solid rgba(61,220,176,0.2)}
+.mc3{background:rgba(247,183,49,0.12);color:var(--a3);border:1px solid rgba(247,183,49,0.2)}
+.mc4{background:rgba(167,139,250,0.12);color:var(--a5);border:1px solid rgba(167,139,250,0.2)}
+
+/* TEXT COLUMN */
+.text-col{}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,142,255,0.08);border:1px solid rgba(108,142,255,0.18);border-radius:100px;padding:7px 18px;font-size:12px;font-weight:700;color:var(--a1);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero-h1{font-family:'Cabinet Grotesk',sans-serif;font-size:70px;font-weight:900;line-height:.98;letter-spacing:-3px;margin-bottom:6px}
+.grad-text{background:linear-gradient(135deg,var(--a1) 0%,var(--a2) 50%,var(--a4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradshift 4s ease-in-out infinite}
+@keyframes gradshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-role{font-family:'Cabinet Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--sub);letter-spacing:-1px;margin-bottom:22px}
+.hero-bio{color:var(--sub);font-size:17px;line-height:1.75;max-width:480px;margin-bottom:32px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.cta1{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--a1),var(--a5));color:#fff;padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;transition:all .25s;box-shadow:0 8px 30px rgba(108,142,255,0.3)}
+.cta1:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(108,142,255,0.4)}
+.cta2{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:14px 28px;border-radius:12px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid var(--border2);transition:all .25s}
+.cta2:hover{border-color:var(--a1);color:var(--a1);transform:translateY(-2px)}
+
+/* STAT STRIP */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.sstat{background:var(--card2);padding:16px 18px;position:relative;overflow:hidden}
+.sstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.ss1::before{background:linear-gradient(90deg,var(--a1),var(--a5))}
+.ss2::before{background:linear-gradient(90deg,var(--a2),var(--a1))}
+.ss3::before{background:linear-gradient(90deg,var(--a3),var(--a2))}
+.ss4::before{background:linear-gradient(90deg,var(--a4),var(--a3))}
+.snum{font-family:'Cabinet Grotesk',sans-serif;font-size:26px;font-weight:900;letter-spacing:-1px;line-height:1}
+.slabel{font-size:11px;color:var(--sub);margin-top:5px;line-height:1.4}
+
+/* ── SECTIONS ── */
+.sec{position:relative;z-index:1;padding:110px 0}
+.sec.alt{background:var(--bg2)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 60px}
+.stag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.stag::before{content:'';width:20px;height:2px;border-radius:2px}
+.stag.blue{color:var(--a1)}.stag.blue::before{background:var(--a1)}
+.stag.green{color:var(--a2)}.stag.green::before{background:var(--a2)}
+.stag.amber{color:var(--a3)}.stag.amber::before{background:var(--a3)}
+.stag.pink{color:var(--a4)}.stag.pink::before{background:var(--a4)}
+.stag.purple{color:var(--a5)}.stag.purple::before{background:var(--a5)}
+.sh{font-family:'Cabinet Grotesk',sans-serif;font-size:46px;font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
+.ssub{color:var(--sub);font-size:16px;max-width:500px;margin-bottom:56px;line-height:1.75}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.ap{color:var(--sub);font-size:16px;line-height:1.85;margin-bottom:16px}
+.ap strong{color:var(--text)}
+.bullets{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.bullet{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--sub)}
+.bdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.info-stack{display:flex;flex-direction:column;gap:12px}
+.icard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 22px;display:flex;align-items:center;gap:14px;transition:border-color .2s,transform .2s}
+.icard:hover{border-color:var(--border2);transform:translateX(4px)}
+.iico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ilabel{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.ival{font-size:14px;font-weight:600;color:var(--text)}
+.isub{font-size:12px;color:var(--a1);margin-top:2px}
+
+/* ── SKILLS ── */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;transition:all .3s;position:relative;overflow:hidden}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .3s}
+.scard:hover{border-color:var(--border2);transform:translateY(-4px)}
+.scard:hover::before{opacity:1}
+.sc1::before{background:linear-gradient(90deg,var(--a1),var(--a5))}
+.sc2::before{background:linear-gradient(90deg,var(--a2),var(--a1))}
+.sc3::before{background:linear-gradient(90deg,var(--a3),var(--a2))}
+.sc4::before{background:linear-gradient(90deg,var(--a4),var(--a3))}
+.sc5::before{background:linear-gradient(90deg,var(--a5),var(--a4))}
+.sc6::before{background:linear-gradient(90deg,var(--a2),var(--a5))}
+.sk-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.sk-ico{font-size:24px}
+.sk-cat{font-family:'Cabinet Grotesk',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.3px}
+.sk-items{display:flex;flex-direction:column;gap:9px}
+.ski{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--sub)}
+.skdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* ── PROJECTS ── */
+.pg{display:flex;flex-direction:column;gap:24px}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:34px;display:grid;grid-template-columns:1fr 190px;gap:32px;align-items:start;position:relative;overflow:hidden;transition:all .3s}
+.pcard::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s}
+.pcard:hover{border-color:rgba(108,142,255,0.25);transform:translateY(-4px)}
+.pcard:hover::before{opacity:1}
+.p1::before{background:radial-gradient(ellipse at top left,rgba(108,142,255,0.04),transparent 60%)}
+.p2::before{background:radial-gradient(ellipse at top left,rgba(61,220,176,0.04),transparent 60%)}
+.p3::before{background:radial-gradient(ellipse at top left,rgba(167,139,250,0.04),transparent 60%)}
+.ptop{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.pico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.pbadge{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:700}
+.ptitle{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px}
+.pdesc{color:var(--sub);font-size:14px;line-height:1.75;margin-bottom:16px;max-width:580px}
+.pfinds{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.pfind{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--sub)}
+.parr{flex-shrink:0;margin-top:3px;font-size:12px}
+.ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.ptag{font-size:11px;padding:4px 11px;border-radius:7px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--sub);font-weight:500}
+.plink{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:700;transition:opacity .2s}
+.plink:hover{opacity:.7}
+.pnums{display:flex;flex-direction:column;gap:10px}
+.pn{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center}
+.pnv{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:900;letter-spacing:-.5px}
+.pnl{font-size:10px;color:var(--sub);margin-top:4px;line-height:1.3}
+
+/* ── EXPERIENCE ── */
+.expcard{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:start;position:relative;overflow:hidden}
+.expcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--a1),var(--a2),var(--a4))}
+.erole{font-family:'Cabinet Grotesk',sans-serif;font-size:28px;font-weight:900;letter-spacing:-.8px;margin-bottom:4px}
+.eco{font-size:16px;font-weight:600;margin-bottom:3px}
+.eperiod{font-size:13px;color:var(--sub);margin-bottom:24px}
+.epts{display:flex;flex-direction:column;gap:11px}
+.ept{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--sub);line-height:1.65}
+.ept::before{content:'▸';flex-shrink:0;margin-top:2px;font-size:12px}
+.echips{display:flex;flex-direction:column;gap:9px;min-width:140px}
+.echip{border-radius:10px;padding:11px 16px;text-align:center;font-size:12px;font-weight:700}
+
+/* ── EDUCATION ── */
+.educard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px 36px;display:flex;justify-content:space-between;align-items:center;gap:24px;position:relative;overflow:hidden;transition:border-color .2s}
+.educard:hover{border-color:var(--border2)}
+.eduleft{display:flex;align-items:center;gap:16px}
+.eduico{font-size:36px}
+.edudeg{font-family:'Cabinet Grotesk',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
+.edusch{font-size:14px;font-weight:500;margin-bottom:3px}
+.eduyear{font-size:13px;color:var(--sub)}
+.edubadge{border-radius:10px;padding:11px 22px;font-size:13px;font-weight:700;white-space:nowrap}
+
+/* ── CONTACT ── */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.clinks{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 22px;text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:all .25s}
+.clink:hover{border-color:rgba(108,142,255,0.3);transform:translateX(6px)}
+.clico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.clico svg{width:18px;height:18px}
+.cllabel{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.clval{font-size:13px;color:var(--text)}
+.form{display:flex;flex-direction:column;gap:14px}
+.fl{font-size:12px;color:var(--sub);font-weight:600;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px}
+.fi{width:100%;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 16px;color:var(--text);font-family:'Satoshi',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.fi:focus{border-color:var(--a1)}
+.fi::placeholder{color:var(--faint)}
+textarea.fi{resize:vertical;min-height:120px}
+.fbtn{width:100%;background:linear-gradient(135deg,var(--a1),var(--a5));color:#fff;border:none;border-radius:12px;padding:15px;font-family:'Satoshi',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 8px 24px rgba(108,142,255,0.25)}
+.fbtn:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 14px 32px rgba(108,142,255,0.35)}
+.fok{display:none;background:rgba(61,220,176,0.08);border:1px solid rgba(61,220,176,0.2);border-radius:12px;padding:16px;text-align:center;font-size:14px;color:var(--a2);margin-top:4px}
+
+/* ── FOOTER ── */
+footer{padding:28px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+footer span{font-size:13px;color:var(--sub)}
+
+/* ── ANIMATIONS ── */
+.fade{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+.fade-l{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+.fade-l.in{opacity:1;transform:translateX(0)}
+.fade-r{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease}
+.fade-r.in{opacity:1;transform:translateX(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr;padding:0 24px;gap:40px}
+  .photo-col{order:-1}
+  .photo-ring{width:220px;height:220px}
+  .hero-h1{font-size:44px}
+  .wrap{padding:0 24px}
+  .about-grid,.cgrid{grid-template-columns:1fr}
+  .sg{grid-template-columns:1fr 1fr}
+  .pcard{grid-template-columns:1fr}
+  .expcard{grid-template-columns:1fr}
+  .educard{flex-direction:column;align-items:flex-start}
+  .stat-strip{grid-template-columns:1fr 1fr}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<div class="orb o3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Meghana.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="resume.pdf" target="_blank" class="nbtn ghost">Resume ↗</a>
+    <a href="https://www.linkedin.com/in/meghana-uppar-374603267/" target="_blank" class="nbtn solid">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT: PHOTO -->
+    <div class="photo-col fade-l">
+      <div class="photo-ring">
+        <div class="photo-inner">
+          <img src="photo.jpg" alt="Meghana Balappa Uppar"/>
+        </div>
+      </div>
+      <div class="avail-pill"><span class="avail-dot"></span>Open to hire</div>
+      <div class="mini-chips">
+        <span class="mchip mc1">Python</span>
+        <span class="mchip mc2">SQL</span>
+        <span class="mchip mc3">Power BI</span>
+        <span class="mchip mc4">Prophet</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: TEXT -->
+    <div class="text-col fade-r">
+      <div class="eyebrow">Data Analyst · Bengaluru</div>
+      <div class="hero-h1">Hi, I'm<br><span class="grad-text">Meghana</span></div>
+      <div class="hero-role">Data Analyst</div>
+      <p class="hero-bio">I turn raw data into business decisions — building end-to-end analytics pipelines with Python, SQL, Power BI, and ML forecasting. Every insight I deliver comes with a recommendation a manager can act on immediately.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="cta1">View My Work ↓</a>
+        <a href="https://github.com/Meghana-b-u" target="_blank" class="cta2">GitHub →</a>
+      </div>
+      <div class="stat-strip">
+        <div class="sstat ss1"><div class="snum" style="color:var(--a1)">1M+</div><div class="slabel">Rows analysed</div></div>
+        <div class="sstat ss2"><div class="snum" style="color:var(--a2)">£19.3M</div><div class="slabel">Revenue tracked</div></div>
+        <div class="sstat ss3"><div class="snum" style="color:var(--a3)">21%</div><div class="slabel">Products → 80% revenue</div></div>
+        <div class="sstat ss4"><div class="snum" style="color:var(--a4)">774</div><div class="slabel">Champion customers</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec alt" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="fade-l">
+        <div class="stag blue">About me</div>
+        <h2 class="sh">From data<br>to impact.</h2>
+        <p class="ap">I'm <strong>Meghana Balappa Uppar</strong>, a data analytics intern at <strong>Unlox</strong>. I'm passionate about turning messy datasets into decisions that matter for businesses.</p>
+        <p class="ap">I don't just build charts — I answer business questions. Every analysis ends with a concrete recommendation a manager can act on the same day.</p>
+        <p class="ap">I built a full 9-stage analytics pipeline on 1 million+ transactions — covering cleaning, SQL, EDA, RFM segmentation, Power BI, and ML forecasting.</p>
+        <div class="bullets">
+          <div class="bullet"><span class="bdot" style="background:var(--a1)"></span>Data Analytics Intern at Unlox, Bengaluru</div>
+          <div class="bullet"><span class="bdot" style="background:var(--a2)"></span>End-to-end pipeline on 1M+ real e-commerce transactions</div>
+          <div class="bullet"><span class="bdot" style="background:var(--a3)"></span>RFM segmentation identified £2.1M at-risk revenue</div>
+          <div class="bullet"><span class="bdot" style="background:var(--a4)"></span>Prophet ML model forecasts revenue with 95% confidence</div>
+        </div>
+      </div>
+      <div class="info-stack fade-r">
+        <div class="icard">
+          <div class="iico" style="background:rgba(108,142,255,0.1)">💼</div>
+          <div><div class="ilabel">Current role</div><div class="ival">Data Analytics Intern</div><div class="isub">Unlox · Bengaluru</div></div>
+        </div>
+        <div class="icard">
+          <div class="iico" style="background:rgba(61,220,176,0.1)">🎓</div>
+          <div><div class="ilabel">Education</div><div class="ival">B.E. — Update your branch</div><div class="isub">Update your college name</div></div>
+        </div>
+        <div class="icard">
+          <div class="iico" style="background:rgba(247,183,49,0.1)">🎯</div>
+          <div><div class="ilabel">Looking for</div><div class="ival">Data Analyst roles</div><div class="isub">Full-time · Internship · Remote</div></div>
+        </div>
+        <div class="icard">
+          <div class="iico" style="background:rgba(255,107,157,0.1)">📍</div>
+          <div><div class="ilabel">Location</div><div class="ival">Bengaluru, Karnataka</div><div class="isub">Open to remote</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="fade">
+      <div class="stag green">Skills</div>
+      <h2 class="sh">Tools I work with</h2>
+      <p class="ssub">Every skill applied in a real project — not just listed from a tutorial.</p>
+    </div>
+    <div class="sg fade">
+      <div class="scard sc1">
+        <div class="sk-head"><span class="sk-ico">🐍</span><span class="sk-cat" style="color:var(--a1)">Languages</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a1)"></span>Python</div>
+          <div class="ski"><span class="skdot" style="background:var(--a1)"></span>SQL (SQLite · MySQL)</div>
+          <div class="ski"><span class="skdot" style="background:var(--a1)"></span>DAX (Power BI)</div>
+          <div class="ski"><span class="skdot" style="background:var(--a1)"></span>Markdown</div>
+        </div>
+      </div>
+      <div class="scard sc2">
+        <div class="sk-head"><span class="sk-ico">📊</span><span class="sk-cat" style="color:var(--a2)">Libraries</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>pandas · numpy</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>matplotlib · seaborn</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>scikit-learn</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>Prophet (Facebook)</div>
+        </div>
+      </div>
+      <div class="scard sc3">
+        <div class="sk-head"><span class="sk-ico">⚡</span><span class="sk-cat" style="color:var(--a3)">BI & Tools</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a3)"></span>Power BI Desktop</div>
+          <div class="ski"><span class="skdot" style="background:var(--a3)"></span>Power Query · DAX</div>
+          <div class="ski"><span class="skdot" style="background:var(--a3)"></span>Google Colab · Jupyter</div>
+          <div class="ski"><span class="skdot" style="background:var(--a3)"></span>GitHub</div>
+        </div>
+      </div>
+      <div class="scard sc4">
+        <div class="sk-head"><span class="sk-ico">🧠</span><span class="sk-cat" style="color:var(--a4)">Analytics</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a4)"></span>RFM Segmentation</div>
+          <div class="ski"><span class="skdot" style="background:var(--a4)"></span>Pareto Analysis</div>
+          <div class="ski"><span class="skdot" style="background:var(--a4)"></span>EDA · KPI Design</div>
+          <div class="ski"><span class="skdot" style="background:var(--a4)"></span>Revenue Forecasting</div>
+        </div>
+      </div>
+      <div class="scard sc5">
+        <div class="sk-head"><span class="sk-ico">💡</span><span class="sk-cat" style="color:var(--a5)">Soft Skills</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a5)"></span>Business storytelling</div>
+          <div class="ski"><span class="skdot" style="background:var(--a5)"></span>Problem solving</div>
+          <div class="ski"><span class="skdot" style="background:var(--a5)"></span>Attention to detail</div>
+          <div class="ski"><span class="skdot" style="background:var(--a5)"></span>Self-learning</div>
+        </div>
+      </div>
+      <div class="scard sc6">
+        <div class="sk-head"><span class="sk-ico">🚀</span><span class="sk-cat" style="color:var(--a2)">Learning</span></div>
+        <div class="sk-items">
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>Advanced SQL</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>Tableau</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>Machine Learning</div>
+          <div class="ski"><span class="skdot" style="background:var(--a2)"></span>Excel Advanced</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec alt" id="projects">
+  <div class="wrap">
+    <div class="fade">
+      <div class="stag amber">Projects</div>
+      <h2 class="sh">Real data. Real findings.</h2>
+      <p class="ssub">Built on real datasets — every project ends with a business recommendation, not just charts.</p>
+    </div>
+    <div class="pg">
+      <div class="pcard p1 fade">
+        <div>
+          <div class="ptop">
+            <div class="pico" style="background:rgba(108,142,255,0.1)">🛒</div>
+            <span class="pbadge" style="background:rgba(108,142,255,0.1);color:var(--a1);border:1px solid rgba(108,142,255,0.2)">★ Featured</span>
+          </div>
+          <div class="ptitle">E-Commerce Sales Intelligence Platform</div>
+          <p class="pdesc">End-to-end analytics pipeline on 1,067,371 real UK retail transactions — data engineering, SQL analysis, RFM segmentation, Power BI dashboard, and Prophet forecasting.</p>
+          <div class="pfinds">
+            <div class="pfind"><span class="parr" style="color:var(--a1)">→</span>21% of products drive 80% of revenue — 1,040 SKUs identified (Pareto)</div>
+            <div class="pfind"><span class="parr" style="color:var(--a1)">→</span>774 Champion customers generate 55% of total revenue</div>
+            <div class="pfind"><span class="parr" style="color:var(--a1)">→</span>£2.1M at risk from 880 churning customers — win-back campaign recommended</div>
+            <div class="pfind"><span class="parr" style="color:var(--a1)">→</span>November peaks 2x every year — pre-Christmas seasonal pattern confirmed</div>
+          </div>
+          <div class="ptags">
+            <span class="ptag">Python</span><span class="ptag">pandas</span><span class="ptag">SQL</span>
+            <span class="ptag">seaborn</span><span class="ptag">scikit-learn</span><span class="ptag">Prophet</span>
+            <span class="ptag">Power BI</span><span class="ptag">RFM</span>
+          </div>
+          <a href="https://github.com/Meghana-b-u/ecommerce-sales-analytics" target="_blank" rel="noopener noreferrer" class="plink" style="color:var(--a1)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub ↗
+          </a>
+        </div>
+        <div class="pnums">
+          <div class="pn"><div class="pnv" style="color:var(--a1)">1M+</div><div class="pnl">rows</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a2)">9</div><div class="pnl">stages</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a3)">10</div><div class="pnl">charts</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a4)">43</div><div class="pnl">countries</div></div>
+        </div>
+      </div>
+
+      <div class="pcard p2 fade">
+        <div>
+          <div class="ptop">
+            <div class="pico" style="background:rgba(61,220,176,0.1)">🏪</div>
+            <span class="pbadge" style="background:rgba(61,220,176,0.1);color:var(--a2);border:1px solid rgba(61,220,176,0.2)">Power BI</span>
+          </div>
+          <div class="ptitle">Superstore Sales Analytics Dashboard</div>
+          <p class="pdesc">Interactive Power BI dashboard on 9,800 orders — analysing sales by region, category, segment, and time with DAX calculated measures and dynamic slicers.</p>
+          <div class="pfinds">
+            <div class="pfind"><span class="parr" style="color:var(--a2)">→</span>Phones are the top sub-category — Rs 3.27M in sales</div>
+            <div class="pfind"><span class="parr" style="color:var(--a2)">→</span>West region leads with 31.4% of total sales</div>
+            <div class="pfind"><span class="parr" style="color:var(--a2)">→</span>Consumer segment is 50.7% of all customers</div>
+            <div class="pfind"><span class="parr" style="color:var(--a2)">→</span>Technology is the highest selling category at Rs 0.83M</div>
+          </div>
+          <div class="ptags">
+            <span class="ptag">Power BI</span><span class="ptag">DAX</span>
+            <span class="ptag">Power Query</span><span class="ptag">KPI Cards</span><span class="ptag">Slicers</span>
+          </div>
+          <a href="https://github.com/Meghana-b-u/Superstore" target="_blank" rel="noopener noreferrer" class="plink" style="color:var(--a2)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub ↗
+          </a>
+        </div>
+        <div class="pnums">
+          <div class="pn"><div class="pnv" style="color:var(--a2)">9,800</div><div class="pnl">orders</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a1)">12</div><div class="pnl">visuals</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a3)">3</div><div class="pnl">DAX</div></div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: CHURN -->
+      <div class="pcard p3 fade">
+        <div>
+          <div class="ptop">
+            <div class="pico" style="background:rgba(167,139,250,0.1)">📉</div>
+            <span class="pbadge" style="background:rgba(167,139,250,0.1);color:var(--a5);border:1px solid rgba(167,139,250,0.2)">Python · EDA</span>
+          </div>
+          <div class="ptitle">Customer Churn Analysis</div>
+          <p class="pdesc">Exploratory data analysis and predictive modelling to identify customers at risk of churning — uncovering the key behavioural patterns that signal a customer is about to leave.</p>
+          <div class="pfinds">
+            <div class="pfind"><span class="parr" style="color:var(--a5)">→</span>Identified top features driving customer churn using feature importance</div>
+            <div class="pfind"><span class="parr" style="color:var(--a5)">→</span>Built classification model to predict churn probability per customer</div>
+            <div class="pfind"><span class="parr" style="color:var(--a5)">→</span>Visualised churn patterns across customer segments and tenure groups</div>
+            <div class="pfind"><span class="parr" style="color:var(--a5)">→</span>Delivered actionable retention recommendations based on risk scores</div>
+          </div>
+          <div class="ptags">
+            <span class="ptag">Python</span><span class="ptag">pandas</span><span class="ptag">seaborn</span>
+            <span class="ptag">scikit-learn</span><span class="ptag">EDA</span><span class="ptag">Classification</span>
+          </div>
+          <a href="https://github.com/Meghana-b-u/customer_churn_analysis" target="_blank" rel="noopener noreferrer" class="plink" style="color:var(--a5)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub ↗
+          </a>
+        </div>
+        <div class="pnums">
+          <div class="pn"><div class="pnv" style="color:var(--a5)">3</div><div class="pnl">projects</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a2)">EDA</div><div class="pnl">method</div></div>
+          <div class="pn"><div class="pnv" style="color:var(--a4)">ML</div><div class="pnl">model</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="fade">
+      <div class="stag pink">Experience</div>
+      <h2 class="sh">Where I've worked</h2>
+    </div>
+    <div class="expcard fade">
+      <div>
+        <div class="erole">Data Analytics Intern</div>
+        <div class="eco" style="color:var(--a1)">Unlox · Bengaluru, Karnataka</div>
+        <div class="eperiod">2025 – Present · Internship</div>
+        <div class="epts">
+          <div class="ept" style="--c:var(--a2)">Working on real business data as part of the core analytics team</div>
+          <div class="ept">Built end-to-end analytics project on 1M+ e-commerce transactions using Python, SQL, and Power BI</div>
+          <div class="ept">Applied RFM segmentation to identify £2.1M at-risk revenue — win-back campaign recommended</div>
+          <div class="ept">Developed Facebook Prophet forecasting model predicting quarterly revenue with 95% confidence</div>
+          <div class="ept">Designed interactive Power BI dashboard presented in business review meetings</div>
+        </div>
+      </div>
+      <div class="echips">
+        <div class="echip" style="background:rgba(108,142,255,0.1);color:var(--a1);border:1px solid rgba(108,142,255,0.15)">Python · SQL</div>
+        <div class="echip" style="background:rgba(61,220,176,0.1);color:var(--a2);border:1px solid rgba(61,220,176,0.15)">Power BI · DAX</div>
+        <div class="echip" style="background:rgba(247,183,49,0.1);color:var(--a3);border:1px solid rgba(247,183,49,0.15)">Prophet · ML</div>
+        <div class="echip" style="background:rgba(167,139,250,0.1);color:var(--a5);border:1px solid rgba(167,139,250,0.15)">RFM Analysis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sec alt" id="education">
+  <div class="wrap">
+    <div class="fade">
+      <div class="stag purple">Education</div>
+      <h2 class="sh">Academic background</h2>
+    </div>
+    <div class="educard fade">
+      <div class="eduleft">
+        <div class="eduico">🎓</div>
+        <div>
+          <div class="edudeg">Bachelor of Engineering</div>
+          <div class="edusch" style="color:var(--a1)">Dr.T.Thimmaiah institute of techonology,Oorugum,KGF</div>
+          <div class="eduyear">2026</div>
+        </div>
+      </div>
+      <div class="edubadge" style="background:rgba(61,220,176,0.1);color:var(--a2);border:1px solid rgba(61,220,176,0.2)">Computer Science Engineering</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="fade">
+      <div class="stag blue">Contact</div>
+      <h2 class="sh">Let's connect</h2>
+      <p class="ssub">Open to Data Analyst roles — full-time, internship, or remote. Let's talk.</p>
+    </div>
+    <div class="cgrid fade">
+      <div class="clinks">
+        <a href="https://www.linkedin.com/in/meghana-uppar-374603267/" target="_blank" class="clink">
+          <div class="clico" style="background:rgba(108,142,255,0.1)"><svg viewBox="0 0 24 24" fill="var(--a1)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div class="cl-body"><div class="cllabel">LinkedIn</div><div class="clval">meghana-uppar-374603267</div></div>
+        </a>
+        <a href="https://github.com/Meghana-b-u" target="_blank" class="clink">
+          <div class="clico" style="background:rgba(255,255,255,0.05)"><svg viewBox="0 0 24 24" fill="var(--text)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></div>
+          <div class="cl-body"><div class="cllabel">GitHub</div><div class="clval">github.com/Meghana-b-u</div></div>
+        </a>
+        <a href="mailto:meghanabu01@gmail.com" class="clink">
+          <div class="clico" style="background:rgba(247,183,49,0.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a3)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="cl-body"><div class="cllabel">Email</div><div class="clval">your-email@gmail.com</div></div>
+        </a>
+        <a href="resume.pdf" target="_blank" class="clink">
+          <div class="clico" style="background:rgba(61,220,176,0.1)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="cl-body"><div class="cllabel">Resume</div><div class="clval">Download PDF ↗</div></div>
+        </a>
+      </div>
+      <div class="form">
+        <div><label class="fl">Your name</label><input type="text" class="fi" placeholder="e.g. Priya Sharma" id="fn"/></div>
+        <div><label class="fl">Your email</label><input type="email" class="fi" placeholder="e.g. priya@company.com" id="fe"/></div>
+        <div><label class="fl">Message</label><textarea class="fi" placeholder="Hi Meghana, I'd like to discuss an opportunity..." id="fm"></textarea></div>
+        <button class="fbtn" onclick="go()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+        <div class="fok" id="fok">Thank you! I will reply within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Meghana Balappa Uppar · Data Analyst · Bengaluru</span>
+  <span>Built with HTML · CSS · JS</span>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.fade,.fade-l,.fade-r').forEach(el=>io.observe(el));
+function go(){
+  const n=document.getElementById('fn').value.trim();
+  const e=document.getElementById('fe').value.trim();
+  const m=document.getElementById('fm').value.trim();
+  if(!n||!e||!m){alert('Please fill in all fields.');return;}
+  window.location.href='mailto:your-email@gmail.com?subject='+encodeURIComponent('Portfolio enquiry from '+n)+'&body='+encodeURIComponent(m+'\n\nFrom: '+n+'\nEmail: '+e);
+  document.getElementById('fok').style.display='block';
+}
+</script>
+</body>
+</html>
